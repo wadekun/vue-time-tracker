@@ -55,6 +55,7 @@ app.all("*", function (req, res, next) {
 
 ## Build Setup
 
+**front-end**
 ``` bash
 # install dependencies
 npm install
@@ -73,6 +74,12 @@ npm run e2e
 
 # run all tests
 npm test
+```
+
+**Server**
+```bash
+# run node server
+npm run server
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
