@@ -65,27 +65,31 @@
 <script>
   export default {
     data () {
-      // 事先模拟一个数据
-      let existingEntry = {
-        user: {
-          name: '二哲',
-          email: 'kodo@forchange.cn',
-          image: 'https://sfault-avatar.b0.upaiyun.com/888/223/888223038-5646dbc28d530_huge256'
-        },
-        comment: '我的一个备注',
-        totalTime: 1.5,
-        date: '2016-05-01'
-      }
+      this.$http.get('http://localhost:8888/time-entries')
+              .then(function (ret) {
+                this.timeEntries = ret.data
+              })
+              .then(function (err) {
+                console.log(err)
+              })
 
       return {
-        timeEntries: [existingEntry]
+        timeEntries: []
       }
     },
     methods: {
       deleteTimeEntry (timeEntry) {
         // 这个方法用于删除某一项计划
         let index = this.timeEntries.indexOf(timeEntry)
+        let _id = timeEntry._id
         if (window.confirm('确定要删除吗?')) {
+          this.$http.delete('http://localhost:8888/delete/' + _id)
+                  .then(function (ret) {
+                    console.log(ret)
+                  })
+                  .then(function (err) {
+                    console.log(err)
+                  })
           this.timeEntries.splice(index, 1)
           // 这里会派发到父组件上，执行父组件events里的deleteTime方法
           this.$dispatch('deleteTime', timeEntry)

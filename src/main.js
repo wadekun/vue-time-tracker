@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 
 // 引入组件
 import App from './App'
@@ -15,6 +16,7 @@ new Vue({
 })
 */
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
 // 路由需要一个根组件
 // const App = Vue.extends({})

@@ -54,9 +54,22 @@
     },
     methods: {
       save () {
-        let timeEntry = this.timeEntry
-        this.$dispatch('timeUpdate', timeEntry)
-        this.timeEntry = {}
+//        let timeEntry = this.timeEntry
+//        this.$dispatch('timeUpdate', timeEntry)
+//        this.timeEntry = {}
+        this.$http.post('http://localhost:8888/create', {
+          comment: this.timeEntry.comment,
+          totalTime: this.timeEntry.totalTime,
+          date: this.timeEntry.date
+        }).then(function (ret) {
+          console.log(ret)
+          let timeEntry = this.timeEntry
+          console.log(timeEntry)
+          this.$dispatch('timeUpdate', timeEntry)
+          this.timeEntry = {}
+        }).then(function (err) {
+          console.log(err)
+        })
       }
     }
   }
